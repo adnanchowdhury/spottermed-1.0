@@ -1,0 +1,259 @@
+
+html {
+  height: 100%;
+}
+
+
+
+/* Font */
+body, h1, h2, h3, h4, h5, h6, .question_number {
+font-family: 'Nunito', sans-serif;
+
+}
+
+
+body {
+  background: repeating-linear-gradient(
+    45deg,
+    #f7f7f7,
+    #f7f7f7 10px,
+    #f9f9f9 10px,
+    #f9f9f9 20px
+  );
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+}
+
+
+#siteName {
+  font-family: 'Oswald', sans-serif;
+}
+
+.navbar-brand {
+  font-size: 42px;
+  font-family: 'Oswald', sans-serif !important;
+  margin: 2% 0 0 7.5%;
+  background-color: none !important;
+}
+
+.navbar-brand img {
+  margin-top: 3px;
+}
+
+#main {
+border-radius: 9px;
+border: 4px solid #E9EFF8;
+background: #ffffff;
+max-width: 100%;
+margin: 2% auto;
+
+}
+
+
+
+.question_number {
+font-size: 2.75vmin;
+color: #1abc9c;
+}
+
+.question_col {
+padding: 4% 0 4% 4%;
+}
+
+.img_placeholder {
+  width: 100%;
+  margin: auto;
+}
+
+.q_img {
+width: 68%;
+height: auto;
+display: block;
+margin-right: auto;
+margin-left: auto;
+}
+
+.response_col {
+padding: 4% 0 4% 0%;
+}
+
+.userMarkDisplay {
+  margin: auto;
+  width: 80%;
+}
+
+.response_col small {  
+    float: right;
+}
+
+#currentMark {
+  display: inline-block;
+}
+
+
+.response_col form {
+margin-top: 10%;
+
+}
+
+.response_col .radio {
+margin: 2% 0 2% 0;
+}
+
+.submit_ans {
+background-color: #e67e22;
+border: orange;
+position: absolute;
+text-align: center;
+width: 80px;
+right: 30px;
+bottom: 5%;
+}
+
+.submit_ans:hover {
+  background-color: #d35400;
+}
+
+
+.next_q{
+background-color: #95a5a6;
+border: #95a5a6;
+position: absolute;
+text-align: center;
+width: 80px;
+right: 30px;
+bottom: 10%;
+}
+
+.next_q:hover {
+  background-color: #7f8c8d;
+  border-color: #7f8c8d;
+}
+
+.feedback {
+
+display: none;
+margin: auto;
+float: center;
+width: 85%;
+
+}
+
+#correctanswer {
+display: none;
+}
+
+.fa-times {
+color: red;
+margin: 2px 0px 0px 6px;
+}
+
+.fa-check {
+color: green;
+margin: 2px 0px 0px 6px;
+}
+
+.instruction {
+margin: auto;
+width: 85%;
+margin-top: 9%;
+}
+
+form {
+width: 85%;
+margin: auto;
+
+}
+
+
+
+@media only screen  and (max-device-width: 480px){
+  .next_q{
+  position: unset;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+  .submit_ans {
+  position: unset;
+  margin: auto;
+  text-align: center;
+  width: 100%
+
+  }
+}
+
+
+/* Custom Label*/
+.radioLabel {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radioLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 2.5px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radioLabel:hover input ~ .checkmark {
+    background-color: #1abc9c;
+}
+
+/* When the radio button is checked, add a blue background */
+.radioLabel input:checked ~ .checkmark {
+    background-color: #1abc9c;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) radioLabelwhen checked */
+.radioLabel input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radioLabel .checkmark:after {
+  top: 6px;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+
+
+
+/* Footer */
+
+
