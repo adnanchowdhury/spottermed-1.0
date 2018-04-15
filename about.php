@@ -1,4 +1,4 @@
-<?php require('session.php') ?>
+<?php require('new-session.php') ?>
 <!doctype html>
 <html lang="en">
   <head>
