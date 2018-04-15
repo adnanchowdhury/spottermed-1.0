@@ -1,6 +1,6 @@
 <?php
 
-// Load configuration as an array. Use the actual location of your configuration file
+// Load configuration as an array. 
 $config = parse_ini_file('config.ini'); 
 
 // Try and connect to the database
