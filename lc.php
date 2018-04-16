@@ -2,12 +2,12 @@
 @ob_start();
 session_start();
 ?>
-<?php require('lc-session.php')
- ?>
+<?php require('lc-session.php') ?>
 
 <!doctype html>
 <html lang="en">
   <head>
+
     <title>SpotterMed</title>
     <meta name="description" content="Medical School Spotter Exam Practice">
     <meta name="keywords" content="spotter, exam, medical student, medicine, barts, barts and the london, study, revision, practice, questions">
@@ -326,17 +326,17 @@ session_start();
 
               <?php 
               if ($done == 0) {
-            foreach ($optionsarray as $option) { 
-              if ($option != "") {
-                ?>
-                <div class="radio">
-                  <label class="radioLabel"><?php echo $option; ?>
-                    <input type="radio" name="optradio" value="<?php echo $option; ?>"> <span class="checkmark"></span></label>
-                </div>
-              <?php 
-                }
+                foreach ($optionsarray as $option) { 
+                  if ($option != "") {
+                    ?>
+                    <div class="radio">
+                      <label class="radioLabel"><?php echo $option; ?>
+                        <input type="radio" name="optradio" value="<?php echo $option; ?>"> <span class="checkmark"></span></label>
+                    </div>
+                  <?php 
+                    }
 
-              } 
+                  } 
 
               }
               ?>
@@ -367,8 +367,14 @@ session_start();
 
           
 
-      <?php } else { ?>
-
+      <?php } else { 
+          unset($_SESSION['LCquestionhistory']);
+        ?>
+        <?php 
+          echo '<pre>';
+          var_dump($_SESSION);
+          echo '</pre>';
+        ?>
 
           Your score was: <span id="percetangeMark"></span>% <br />
           <span id="userMark"></span> out of <span id="questionNumber"></span>
@@ -381,8 +387,6 @@ session_start();
             percentage = (userMark_int/questionCounter_int) * 100;
             percentageMark = percentage.toFixed(1);
           document.getElementById("percetangeMark").innerHTML = percentageMark;
-
-
 
 
            document.getElementById("userMark").innerHTML = userMark_int;

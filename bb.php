@@ -2,7 +2,7 @@
 @ob_start();
 session_start();
 ?>
-<?php require('new-session.php') ?>
+<?php require('bb-session.php') ?>
 
 <!doctype html>
 <html lang="en">
@@ -40,15 +40,14 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
-
     <script>
      $(document).ready(function(){
         if (typeof(Storage) !== "undefined") {
           // Store
-          if (localStorage.getItem("userMark") > 0) {
+          if (localStorage.getItem("BBuserMark") > 0) {
               
         } else {
-          localStorage.setItem("userMark", 0);
+          localStorage.setItem("BBuserMark", 0);
         }
         } else {
           document.getElementById("main").innerHTML = "Sorry, your browser does not support Web Storage and therefore you may have some trouble with viewing your score.";
@@ -56,10 +55,10 @@ session_start();
 
         if (typeof(Storage) !== "undefined") {
           // Store
-          if (localStorage.getItem("questionCounter") > 0) {
+          if (localStorage.getItem("BBquestionCounter") > 0) {
               
         } else {
-          localStorage.setItem("questionCounter", 0);
+          localStorage.setItem("BBquestionCounter", 0);
         }
         } 
 
@@ -67,11 +66,11 @@ session_start();
 
       // Question Counter Script - runs only when questions not all done.
     <?php if ($done == 0) { ?>
-        var temp = localStorage.getItem("questionCounter");
+        var temp = localStorage.getItem("BBquestionCounter");
         var int_questionCounter = parseInt(temp);
         int_questionCounter ++;
-        localStorage.setItem("questionCounter", int_questionCounter);
-        $( "#questionCount" ).html(localStorage.getItem("questionCounter"));
+        localStorage.setItem("BBquestionCounter", int_questionCounter);
+        $( "#questionCount" ).html(localStorage.getItem("BBquestionCounter"));
     <?php } ?>
 
 /*        var questionObj = JSON.parse('<?php echo $question_json ?>');
@@ -119,10 +118,10 @@ session_start();
             abc = $('input[name=optradio]:checked')
             $(abc).after(" <i></i>");
             $("#AnswerForm").find("i").addClass("fas fa-check");
-            var store = localStorage.getItem("userMark");
+            var store = localStorage.getItem("BBuserMark");
             var int_userMark = parseInt(store);
             int_userMark ++;
-            localStorage.setItem("userMark", int_userMark);
+            localStorage.setItem("BBuserMark", int_userMark);
             
 
 
@@ -276,7 +275,6 @@ session_start();
     </header>
 
     <div class="container">
-
       <div class="row" id="main" >
         <div class="col-sm-6 question_col">
    <?php if ($done == 0) { ?> <!-- If all questions are seen, hide everything. -->
@@ -299,16 +297,15 @@ session_start();
           <div class="userMarkDisplay">
             <small> Number of Questions Correct: <span id="currentMark"></span></small>
                 <script>
-                  currentMark_int = parseInt(localStorage.getItem("userMark"));
+                  currentMark_int = parseInt(localStorage.getItem("BBuserMark"));
                   if (isNaN(currentMark_int) == 1) {
                     document.getElementById("currentMark").innerHTML = 0;
                   } else {
                    document.getElementById("currentMark").innerHTML = currentMark_int;
                   }
-                  
                 </script>
-          </div>          
-          
+          </div>
+
           <!-- Appears when answer is submitted -->
 
             <div class="alert alert-success feedback correct_response">
@@ -329,17 +326,17 @@ session_start();
 
               <?php 
               if ($done == 0) {
-            foreach ($optionsarray as $option) { 
-              if ($option != "") {
-                ?>
-                <div class="radio">
-                  <label class="radioLabel"><?php echo $option; ?>
-                    <input type="radio" name="optradio" value="<?php echo $option; ?>"> <span class="checkmark"></span></label>
-                </div>
-              <?php 
-                }
+                foreach ($optionsarray as $option) { 
+                  if ($option != "") {
+                    ?>
+                    <div class="radio">
+                      <label class="radioLabel"><?php echo $option; ?>
+                        <input type="radio" name="optradio" value="<?php echo $option; ?>"> <span class="checkmark"></span></label>
+                    </div>
+                  <?php 
+                    }
 
-              } 
+                  } 
 
               }
               ?>
@@ -350,7 +347,7 @@ session_start();
 
             
 
-<!--              <?php echo $_SESSION['userMark'] ?>
+<!--              <?php echo $_SESSION['BBuserMark'] ?>
  -->
 
           </form>
@@ -370,27 +367,33 @@ session_start();
 
           
 
-      <?php } else { ?>
-
+      <?php } else { 
+          unset($_SESSION['BBquestionhistory']);
+        ?>
+        <?php 
+          echo '<pre>';
+          var_dump($_SESSION);
+          echo '</pre>';
+        ?>
 
           Your score was: <span id="percetangeMark"></span>% <br />
           <span id="userMark"></span> out of <span id="questionNumber"></span>
 
           <script> 
 
-            userMark_int = parseInt(localStorage.getItem("userMark"));
-            questionCounter_int = parseInt(localStorage.getItem("questionCounter")); 
+            userMark_int = parseInt(localStorage.getItem("BBuserMark"));
+            questionCounter_int = parseInt(localStorage.getItem("BBquestionCounter")); 
 
             percentage = (userMark_int/questionCounter_int) * 100;
-            percentageMark = percentage.toFixed(1);;
+            percentageMark = percentage.toFixed(1);
           document.getElementById("percetangeMark").innerHTML = percentageMark;
 
 
-          localStorage.removeItem("userMark");
-          localStorage.removeItem("questionCounter");
-
            document.getElementById("userMark").innerHTML = userMark_int;
            document.getElementById("questionNumber").innerHTML =questionCounter_int;
+
+         localStorage.removeItem("BBuserMark");
+          localStorage.removeItem("BBquestionCounter");
         </script> 
 
       <?php } ?><!--  // If all questions are seen, hide everything. -->
@@ -408,7 +411,7 @@ session_start();
         ·
         <a href="about.php">About</a>
         ·
-        <a href="faq.php">FAQ</a>
+        <a href="FAQ.php">FAQ</a>
         ·
         <a href="contact.php">Contact</a>
       </p>

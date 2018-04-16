@@ -1,15 +1,15 @@
 <?php require('db_connect.php') ?>
 <?php
 
-//Total Number of Questions in LCQuestions
-$LCcount_query = db_query("SELECT questionID FROM LCQuestions");
-$totalquestions = mysqli_num_rows($LCcount_query);
+//Total Number of Questions in BBQuestions
+$BBcount_query = db_query("SELECT questionID FROM BBQuestions");
+$totalquestions = mysqli_num_rows($BBcount_query);
 
 
 
 //Find a Question
 function findQuestion() {
-	$results = db_select("SELECT * FROM LCQuestions ORDER BY rand() LIMIT 1"); 
+	$results = db_select("SELECT * FROM BBQuestions ORDER BY rand() LIMIT 1"); 
 	if($results === false) {
 	    $error = db_error();
 			console.log("No result found.");
@@ -21,14 +21,14 @@ function findQuestion() {
 
 	// Checks to see if question is already seen (i.e. in SESSION['questionhistory'])
 
-	if (isset($_SESSION['LCquestionhistory'])) {
+	if (isset($_SESSION['BBquestionhistory'])) {
 		// do nothing
 	} else {
-		$_SESSION['LCquestionhistory'] = array();  //Initialises SESSION['questionHistory']
+		$_SESSION['BBquestionhistory'] = array();  //Initialises SESSION['questionHistory']
 	}
 
 
-	if (in_array($q_id_integer, $_SESSION['LCquestionhistory'])) {
+	if (in_array($q_id_integer, $_SESSION['BBquestionhistory'])) {
 		return 0;
 	}
 	else {
@@ -40,15 +40,15 @@ function findQuestion() {
 //checks to see if user has seen all questions 
 function checkIfAllDone() {
 	global $totalquestions;
-	if (isset($_SESSION['LCquestionhistory'])) {
+	if (isset($_SESSION['BBquestionhistory'])) {
 		// do nothing
 	} else {
-		$_SESSION['LCquestionhistory'] = array();
+		$_SESSION['BBquestionhistory'] = array();
 	}
-	$x = count($_SESSION['LCquestionhistory']); 
+	$x = count($_SESSION['BBquestionhistory']); 
 	if ($x == $totalquestions) {
 		//echo "ALL DONE";
-		//session_unset($_SESSION['LCquestionhistory']);
+		//session_unset($_SESSION['BBquestionhistory']);
 		return 1;
 	}
 	else {
@@ -66,13 +66,13 @@ function pushQuestion() {
 	while ($question == 0) {
 		$question = findQuestion();
 	}
-	if (isset($_SESSION['LCquestionNumber'])) {
+	if (isset($_SESSION['BBquestionNumber'])) {
 	// do nothing
 	} else {
-		$_SESSION['LCquestionNumber'] = 0;
+		$_SESSION['BBquestionNumber'] = 0;
 	}
 
-	$_SESSION['LCquestionNumber'] ++;
+	$_SESSION['BBquestionNumber'] ++;
 	return $question;
 	}
 }
@@ -85,7 +85,7 @@ $question = pushQuestion();
 
 //Stores the called question in SESSION to mark it as 'seen'.
 $var = $question['questionID'];
-$_SESSION['LCquestionhistory'][] = $var;
+$_SESSION['BBquestionhistory'][] = $var;
 
 
 //Returns an array of all answer Options.
