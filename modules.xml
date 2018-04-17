@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<modules>
+	<module>
+		<id>1</id>
+		<moduleName>Brain &amp;amp Behaviour</moduleName>
+		<moduleShortName>BB</moduleShortName>
+	</module>
+	<module>
+		<id>2</id>
+		<moduleName>Locomotor</moduleName>
+		<moduleShortName>LC</moduleShortName>
+	</module>
+	<module>
+		<id>3</id>
+		<moduleName>Test</moduleName>
+		<moduleShortName>TEST</moduleShortName>
+	</module>
+</modules>  
