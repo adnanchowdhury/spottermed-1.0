@@ -214,7 +214,7 @@
   		      <h5 class="card-title">Cardiorespiratory</h5>
              <p class="card-text"><small class="text-muted">Coming soon.</small>
             </p><br />
-            <a href="#" class="cr_btn btn btn-primary">Practice CR Questions</a>
+            <a href="test.php" class="cr_btn btn btn-primary">Practice CR Questions</a>
   		    </div>
 		  </div>
 

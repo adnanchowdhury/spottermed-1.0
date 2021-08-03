@@ -379,18 +379,43 @@ session_start();
           Your score was: <span id="percetangeMark"></span>% <br />
           <span id="userMark"></span> out of <span id="questionNumber"></span>
 
+          <!-- <p id="serverResponse"></p> -->
           <script> 
 
-            userMark_int = parseInt(localStorage.getItem("LCuserMark"));
-            questionCounter_int = parseInt(localStorage.getItem("LCquestionCounter")); 
+            userMark_float = parseFloat(localStorage.getItem("LCuserMark"));
+            questionCounter_float = parseFloat(localStorage.getItem("LCquestionCounter")); 
 
-            percentage = (userMark_int/questionCounter_int) * 100;
+            percentage = (userMark_float/questionCounter_float) * 100;
             percentageMark = percentage.toFixed(1);
           document.getElementById("percetangeMark").innerHTML = percentageMark;
 
 
-           document.getElementById("userMark").innerHTML = userMark_int;
-           document.getElementById("questionNumber").innerHTML =questionCounter_int;
+           document.getElementById("userMark").innerHTML = userMark_float;
+           document.getElementById("questionNumber").innerHTML =questionCounter_float;
+ 
+
+
+           // GET FileName 
+
+           var fileName = location.href.replace(/\.[^/.]+$/, "").split("/").slice(-1); 
+
+
+            // XMLHttpRequest to send Percentage Mark and Filename
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.onload = function() {
+              // const serverResponse = document.getElementById("serverResponse");
+              // serverResponse.innerHTML = this.responseText;
+              console.log(this.responseText);
+            };
+
+            xhr.open("POST", "marks.php");
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("userScore=" + percentageMark + "&moduleName=" + fileName);
+
+
+
 
          localStorage.removeItem("LCuserMark");
           localStorage.removeItem("LCquestionCounter");
